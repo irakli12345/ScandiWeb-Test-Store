@@ -8,9 +8,8 @@ export default class Header extends Component {
   render() {
     return (
       <div>
-        <a href="/women">Women </a>
-        <a href="/men">Men </a>
-        <a href="/kids">Kids </a>
+        <a href="/clothes">Clothes </a>
+        <a href="/tech">Tech </a>
       </div>
     );
   }
