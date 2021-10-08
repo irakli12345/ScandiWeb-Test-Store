@@ -63,7 +63,7 @@ export default class App extends Component {
         <Router>
           <div>
             <Route path="/">
-              <Header></Header>
+              <Header categories={this.state.data.categories}></Header>
               <Switch>
                 {this.state.data.categories.map((category) => (
                   <Route path={"/" + category.name} key={category.name}>

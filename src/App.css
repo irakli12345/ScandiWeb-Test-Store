@@ -2,37 +2,29 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  font-family: "Raleway";
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.badge:after {
+  content: attr(value);
+  font-size: 10px;
+  background: rgb(255, 255, 255);
+  border-radius: 50%;
+  border: 1px solid black;
+  padding: 2px;
+  position: relative;
+  left: -8px;
+  top: -10px;
+  opacity: 0.9;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  border: 2px solid red;
 }
-
-.App-link {
-  color: #61dafb;
+.navigation {
+  margin-left: 100px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.actions {
+  margin-right: 100px;
 }

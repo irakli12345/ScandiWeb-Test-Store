@@ -4,10 +4,12 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.4.16",
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "@tilework/opus": "0.0.9",
+    "font-awesome": "^4.7.0",
     "graphql": "^15.6.1",
     "graphql-request": "^3.5.0",
     "react": "^17.0.2",
