@@ -2,6 +2,9 @@ import logo from "./logo.svg";
 import "./App.css";
 import React, { Component } from "react";
 import { request, gql } from "graphql-request";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Category from "./components/Category";
 
 export default class App extends Component {
   constructor(props) {
@@ -16,10 +19,35 @@ export default class App extends Component {
       category {
         name
         products {
+          id
           name
           inStock
+          gallery
+          description
+          category
+          attributes {
+            name
+            type
+            items {
+              value
+              id
+              displayValue
+            }
+          }
+          prices {
+            currency
+            amount
+          }
+          brand
         }
       }
+      categories {
+        name
+        products {
+          id
+        }
+      }
+      currencies
     }
   `;
 
@@ -32,11 +60,21 @@ export default class App extends Component {
   render() {
     if (this.state.loaded) {
       return (
-        <div>
-          {this.state.data.category.products.map((product) => (
-            <p>{product.name}</p>
-          ))}
-        </div>
+        <Router>
+          <div>
+            <Route path="/" exact>
+              <Header></Header>
+              {this.state.data.categories.map((category) => (
+                <Category
+                  products={this.state.data.category.products.filter(
+                    (product) => product["category"] === category.name
+                  )}
+                  name={category.name}
+                ></Category>
+              ))}
+            </Route>
+          </div>
+        </Router>
       );
     } else {
       return null;
