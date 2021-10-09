@@ -11,7 +11,7 @@
   background: rgb(255, 255, 255);
   border-radius: 50%;
   border: 1px solid black;
-  padding: 2px;
+  padding: 5px;
   position: relative;
   left: -8px;
   top: -10px;
@@ -20,11 +20,29 @@
 .header {
   display: flex;
   justify-content: space-between;
-  border: 2px solid red;
+  align-items: center;
+  height: 120px;
 }
 .navigation {
   margin-left: 100px;
+  height: 100%;
+  display: flex;
 }
 .actions {
   margin-right: 100px;
+}
+.menuItems {
+  text-decoration: none;
+  color: #1d1f22;
+  height: 120px;
+  display: flex;
+  padding: 0 15px;
+  font-weight: 600;
+}
+.menuItems > * {
+  margin: auto;
+}
+.active {
+  color: #5ece7b;
+  border-bottom: 2px solid #5ece7b;
 }

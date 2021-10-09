@@ -57,6 +57,11 @@ export default class App extends Component {
       this.setState({ data: data, loaded: true })
     );
   }
+  getFilteredProducts = function (categoryName) {
+    return this.state.data.category.products.filter(
+      (product) => product["category"] === categoryName
+    );
+  };
   render() {
     if (this.state.loaded) {
       return (
@@ -64,18 +69,23 @@ export default class App extends Component {
           <div>
             <Route path="/">
               <Header categories={this.state.data.categories}></Header>
+
               <Switch>
                 {this.state.data.categories.map((category) => (
                   <Route path={"/" + category.name} key={category.name}>
                     <Category
-                      products={this.state.data.category.products.filter(
-                        (product) => product["category"] === category.name
-                      )}
+                      products={this.getFilteredProducts(category.name)}
                       name={category.name}
                       key={category.name}
                     ></Category>
                   </Route>
                 ))}
+                <Route path="/" exact>
+                  <Category
+                    products={this.state.data.category.products}
+                    name={this.state.data.category.name + " products"}
+                  ></Category>
+                </Route>
               </Switch>
             </Route>
           </div>
