@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
+import Cart from "./Cart";
 export default class Header extends Component {
   constructor(props) {
     super(props);
-    this.state = { selectedCategory: null };
+    this.state = { selectedCategory: null, currenciesExpanded: false };
   }
   render() {
     return (
@@ -27,12 +28,25 @@ export default class Header extends Component {
           <Logo></Logo>
         </Link>
         <div className="actions">
-          <p>$</p>{" "}
-          <i
-            className="fa fa-shopping-cart badge"
-            value="5"
-            style={{ fontSize: 24 }}
-          ></i>
+          <div
+            className="group"
+            onClick={() =>
+              this.setState({
+                currenciesExpanded: !this.state.currenciesExpanded,
+              })
+            }
+          >
+            {" "}
+            <span id="dollar">$</span>
+            <span id="arrow">⌄</span>
+          </div>
+          <span
+            className="cart badge"
+            onClick={() => console.log("boo")}
+            value={5}
+          >
+            <Cart></Cart>
+          </span>
         </div>
       </div>
     );

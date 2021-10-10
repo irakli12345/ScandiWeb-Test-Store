@@ -5,18 +5,7 @@
 * {
   font-family: "Raleway";
 }
-.badge:after {
-  content: attr(value);
-  font-size: 10px;
-  background: rgb(255, 255, 255);
-  border-radius: 50%;
-  border: 1px solid black;
-  padding: 5px;
-  position: relative;
-  left: -8px;
-  top: -10px;
-  opacity: 0.9;
-}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -28,9 +17,7 @@
   height: 100%;
   display: flex;
 }
-.actions {
-  margin-right: 100px;
-}
+
 .menuItems {
   text-decoration: none;
   color: #1d1f22;
@@ -45,4 +32,75 @@
 .active {
   color: #5ece7b;
   border-bottom: 2px solid #5ece7b;
+}
+.actions {
+  margin-right: 100px;
+  display: flex;
+  justify-content: space-between;
+  width: 100px;
+}
+.group {
+  display: flex;
+  cursor: pointer;
+}
+#dollar {
+  font-size: 18px;
+  font-weight: 500;
+  margin: auto;
+}
+#arrow {
+  font-size: 16px;
+  position: relative;
+  bottom: 4px;
+  left: 4px;
+  margin: auto;
+}
+.cart {
+  height: 100%;
+  margin: auto;
+  display: flex;
+}
+.cart > * {
+  margin: auto;
+}
+.badge:after {
+  content: attr(value);
+  font-size: 14px;
+  font-weight: 500;
+  background: rgb(0, 0, 0);
+  border-radius: 50%;
+  padding: 4px 8px;
+  color: white;
+  position: relative;
+  left: -5px;
+  top: -15px;
+  opacity: 0.9;
+  font-family: "Roboto";
+}
+.category {
+  margin: 0px 100px;
+}
+.products-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.card {
+  padding: 1rem;
+  height: 500px;
+  width: 400px;
+}
+.card:hover {
+  box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
+}
+img {
+  height: 70%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-price {
+  font-style: normal;
 }
