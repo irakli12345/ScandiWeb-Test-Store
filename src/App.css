@@ -104,3 +104,26 @@ img {
 .card-price {
   font-style: normal;
 }
+.overlayCart {
+  position: absolute;
+  top: -20px;
+  right: 5px;
+  visibility: hidden;
+}
+.card:hover .overlayCart {
+  visibility: visible;
+}
+.imgWithIcon {
+  position: relative;
+}
+.outOfStock {
+  opacity: 0.5;
+}
+.outOfStockText {
+  font-size: 24px;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 150px;
+  left: 130px;
+  color: #8d8f9a;
+}

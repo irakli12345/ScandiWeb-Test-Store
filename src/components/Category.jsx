@@ -16,7 +16,7 @@ export default class Category extends Component {
               key={product.id}
               name={product.name}
               prices={product.prices}
-              status={product.inStock}
+              available={product.inStock}
               headImg={product.gallery[0]}
             ></Card>
           ))}

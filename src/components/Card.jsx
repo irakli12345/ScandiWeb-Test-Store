@@ -6,12 +6,22 @@ export default class Card extends Component {
     this.state = {};
   }
   render() {
-    const { key, name, prices, status, headImg } = this.props;
+    const { key, name, prices, available, headImg } = this.props;
 
     return (
-      <div className="card">
+      <div className={`card ${!available ? "outOfStock" : ""}`}>
         {" "}
-        <img src={headImg}></img>
+        <span className="imgWithIcon">
+          {" "}
+          <img src={headImg}></img>
+          {available ? (
+            <span className="overlayCart">
+              <OverlayCart></OverlayCart>
+            </span>
+          ) : (
+            <p className="outOfStockText">Out of stock</p>
+          )}
+        </span>
         <p className="card-title">{name}</p>
         <p className="card-price">{"$" + prices[0].amount}</p>
       </div>
