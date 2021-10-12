@@ -13,9 +13,9 @@ export default class Header extends Component {
         <div className="navigation">
           {this.props.categories.map((category, index) => (
             <Link
-              to={category.name}
+              to={`/${category.name}`}
               key={index}
-              className={`menuItems ${
+              className={`link menuItems ${
                 this.state.selectedCategory === index ? "active" : ""
               }`}
               onClick={() => this.setState({ selectedCategory: index })}

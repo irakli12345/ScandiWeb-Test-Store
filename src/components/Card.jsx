@@ -1,30 +1,35 @@
 import React, { Component } from "react";
 import OverlayCart from "./Overlaycart";
+import { Link } from "react-router-dom";
+
 export default class Card extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
   render() {
-    const { key, name, prices, available, headImg } = this.props;
+    const { id, name, prices, available, headImg, category } = this.props;
 
     return (
-      <div className={`card ${!available ? "outOfStock" : ""}`}>
+      <Link className="link regular" to={`/${category}/${id}`}>
         {" "}
-        <span className="imgWithIcon">
+        <div className={`card ${!available ? "outOfStock" : ""}`}>
           {" "}
-          <img src={headImg}></img>
-          {available ? (
-            <span className="overlayCart">
-              <OverlayCart></OverlayCart>
-            </span>
-          ) : (
-            <p className="outOfStockText">Out of stock</p>
-          )}
-        </span>
-        <p className="card-title">{name}</p>
-        <p className="card-price">{"$" + prices[0].amount}</p>
-      </div>
+          <span className="imgWithIcon">
+            {" "}
+            <img src={headImg}></img>
+            {available ? (
+              <span className="overlayCart">
+                <OverlayCart></OverlayCart>
+              </span>
+            ) : (
+              <p className="outOfStockText">Out of stock</p>
+            )}
+          </span>
+          <p className="card-title">{name}</p>
+          <p className="card-price">{"$" + prices[0].amount}</p>
+        </div>
+      </Link>
     );
   }
 }

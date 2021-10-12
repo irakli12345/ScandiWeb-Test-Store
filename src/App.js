@@ -5,7 +5,7 @@ import { request, gql } from "graphql-request";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
 import Category from "./components/Category";
-
+import PDP from "./components/PDP";
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -69,10 +69,9 @@ export default class App extends Component {
           <div>
             <Route path="/">
               <Header categories={this.state.data.categories}></Header>
-
               <Switch>
                 {this.state.data.categories.map((category) => (
-                  <Route path={"/" + category.name} key={category.name}>
+                  <Route path={"/" + category.name} exact key={category.name}>
                     <Category
                       products={this.getFilteredProducts(category.name)}
                       name={category.name}
@@ -88,6 +87,23 @@ export default class App extends Component {
                 </Route>
               </Switch>
             </Route>
+            {this.state.data.category.products.map((product) => (
+              <Switch>
+                <Route path={`/${product.category}/${product.id}`}>
+                  <PDP
+                    key={product.id}
+                    name={product.name}
+                    available={product.inStock}
+                    gallery={product.gallery}
+                    description={product.description}
+                    category={product.category}
+                    attributes={product.attributes}
+                    prices={product.prices}
+                    brand={product.brand}
+                  ></PDP>
+                </Route>
+              </Switch>
+            ))}
           </div>
         </Router>
       );
