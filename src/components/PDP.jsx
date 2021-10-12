@@ -9,7 +9,6 @@ export default class PDP extends Component {
   }
   render() {
     const {
-      key,
       name,
       available,
       gallery,
@@ -19,18 +18,32 @@ export default class PDP extends Component {
       prices,
       brand,
     } = this.props;
+    const handleMouseOver = (itemIndex) => {
+      this.setState({ defaultPictureIndex: itemIndex });
+    };
     return (
       <div className="pdp body">
         <div className="gallery">
           <div className="mini-items">
             {" "}
-            {gallery.map((picture) => (
-              <img src={picture}></img>
+            {gallery.map((picture, index) => (
+              <img
+                src={picture}
+                onMouseOver={() => handleMouseOver(index)}
+                className={
+                  this.state.defaultPictureIndex === index ? "inView" : ""
+                }
+              ></img>
             ))}
           </div>
-          <img className="onDisplay"></img>
+          <img
+            className="onDisplay"
+            src={gallery[this.state.defaultPictureIndex]}
+          ></img>
         </div>
-        <h1>{name}</h1>
+        <div className="product-info">
+          <h1>{name}</h1>
+        </div>
       </div>
     );
   }

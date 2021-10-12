@@ -133,11 +133,12 @@ img {
   color: #8d8f9a;
 }
 .pdp {
-  border: 2px solid red;
   min-height: 80vh;
+  display: flex;
 }
 .gallery {
   width: 55%;
+  display: flex;
   border: 2px solid yellow;
 }
 .mini-items {
@@ -149,4 +150,18 @@ img {
   height: 120px;
   object-fit: cover;
   margin-top: 20px;
+  opacity: 0.7;
+  cursor: pointer;
+}
+.inView {
+  opacity: 1 !important;
+}
+.onDisplay {
+  object-fit: cover;
+  width: 70%;
+  margin: auto;
+}
+.product-info {
+  border: 2px solid green;
+  width: 45%;
 }
