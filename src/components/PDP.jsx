@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import LeadingText from "./LeadingText";
+import Attributes from "./Attributes";
 export default class PDP extends Component {
   constructor(props) {
     super(props);
@@ -30,9 +31,6 @@ export default class PDP extends Component {
               <img
                 src={picture}
                 onMouseOver={() => handleMouseOver(index)}
-                className={
-                  this.state.defaultPictureIndex === index ? "inView" : ""
-                }
               ></img>
             ))}
           </div>
@@ -42,7 +40,19 @@ export default class PDP extends Component {
           ></img>
         </div>
         <div className="product-info">
-          <h1>{name}</h1>
+          <LeadingText
+            title={brand}
+            tagline={name}
+            bolded={true}
+            size={30}
+          ></LeadingText>
+          {attributes.map((attributeType) => (
+            <Attributes
+              list={attributeType.items}
+              type={attributeType.type}
+              label={attributeType.name}
+            ></Attributes>
+          ))}
         </div>
       </div>
     );
