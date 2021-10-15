@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
 import Category from "./components/Category";
 import PDP from "./components/PDP";
+import FullCart from "./components/FullCart";
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -51,7 +52,6 @@ export default class App extends Component {
     }
   `;
 
-  async getData() {}
   componentDidMount() {
     request("http://localhost:4000/", this.query).then((data) =>
       this.setState({ data: data, loaded: true })
@@ -63,6 +63,8 @@ export default class App extends Component {
     );
   };
   render() {
+    console.log(this.state.data);
+
     if (this.state.loaded) {
       return (
         <Router>
@@ -92,6 +94,7 @@ export default class App extends Component {
                 <Route path={`/${product.category}/${product.id}`}>
                   <PDP
                     key={product.id}
+                    id={product.id}
                     name={product.name}
                     available={product.inStock}
                     gallery={product.gallery}
@@ -104,6 +107,9 @@ export default class App extends Component {
                 </Route>
               </Switch>
             ))}
+            <Route path="/cart" exact>
+              <FullCart></FullCart>
+            </Route>
           </div>
         </Router>
       );

@@ -13,7 +13,6 @@
   height: 120px;
 }
 .navigation {
-  margin-left: 100px;
   height: 100%;
   display: flex;
 }
@@ -39,7 +38,6 @@
   border-bottom: 2px solid #5ece7b;
 }
 .actions {
-  margin-right: 100px;
   display: flex;
   justify-content: space-between;
   width: 100px;
@@ -83,7 +81,7 @@
   font-family: "Roboto";
 }
 .body {
-  margin: 0px 100px;
+  margin: 0px 150px;
 }
 .products-container {
   display: flex;
@@ -104,10 +102,6 @@ img {
   height: 70%;
   width: 100%;
   object-fit: cover;
-}
-
-.card-price {
-  font-style: normal;
 }
 .overlayCart {
   position: absolute;
@@ -160,11 +154,70 @@ img {
   width: 70%;
   margin: auto;
 }
-.product-info {
+.product-details {
   width: 45%;
   display: flex;
   flex-direction: column;
+  margin: auto;
+  height: 70vh;
+  justify-content: space-around;
 }
 .bold {
   font-weight: 600;
+}
+.attributes {
+  display: flex;
+  width: 350px;
+  justify-content: space-between;
+}
+.attributeLabel {
+  font-family: "Roboto Condensed";
+  font-weight: 700;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+.attributeButton {
+  border: 1px solid black;
+  display: flex;
+  width: 65px;
+  height: 45px;
+  cursor: pointer;
+}
+.attributeButton > p {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 18px;
+  margin: auto;
+}
+.selectedAttribute {
+  color: white;
+  background-color: black;
+}
+.price {
+  font-size: 24px;
+  font-weight: 700;
+}
+.addToCart {
+  width: 350px;
+  text-transform: uppercase;
+  background-color: #5ece7b;
+  padding: 16px 32px;
+  border: none;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+}
+.description {
+  width: 350px;
+}
+.description > p {
+  font-size: 16px;
+  font-family: "Roboto";
+  font-weight: 400;
+}
+.fullCart {
+  margin: 0px 400px 0px 160px;
+}
+.cartItem {
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
 }

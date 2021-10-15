@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Logo from "./Logo";
-import Cart from "./Cart";
+import Logo from "./svg icons/Logo";
+import Cart from "./svg icons/Cart";
 export default class Header extends Component {
   constructor(props) {
     super(props);
@@ -9,7 +9,7 @@ export default class Header extends Component {
   }
   render() {
     return (
-      <div className="header">
+      <div className="header body">
         <div className="navigation">
           {this.props.categories.map((category, index) => (
             <Link

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import OverlayCart from "./Overlaycart";
+import OverlayCart from "./svg icons/Overlaycart";
 import { Link } from "react-router-dom";
 
 export default class Card extends Component {
