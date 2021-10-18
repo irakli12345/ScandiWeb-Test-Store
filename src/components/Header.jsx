@@ -8,7 +8,7 @@ export default class Header extends Component {
     this.state = { selectedCategory: null, currenciesExpanded: false };
   }
   render() {
-    const { cart, categories } = this.props;
+    const { cart, categories, changeMinicartStatus } = this.props;
     return (
       <div className="header body">
         <div className="navigation">
@@ -30,7 +30,7 @@ export default class Header extends Component {
         </Link>
         <div className="actions">
           <div
-            className="group"
+            className="group noselect"
             onClick={() =>
               this.setState({
                 currenciesExpanded: !this.state.currenciesExpanded,
@@ -42,8 +42,9 @@ export default class Header extends Component {
             <span id="arrow">⌄</span>
           </div>
           <span
-            className="cart badge"
-            onClick={() => console.log("boo")}
+            className="cart badge noselect"
+            style={{ cursor: "pointer" }}
+            onClick={changeMinicartStatus}
             value={cart.products.length}
           >
             <Cart></Cart>

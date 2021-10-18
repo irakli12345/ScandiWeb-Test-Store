@@ -19,6 +19,7 @@ export default class App extends Component {
         products: [],
         total: 0,
       },
+      showMinicart: false,
     };
   }
   query = gql`
@@ -116,58 +117,106 @@ export default class App extends Component {
       });
     }
   }
+  changeMinicartStatus() {
+    this.setState({ showMinicart: !this.state.showMinicart });
+  }
   render() {
     if (this.state.loaded) {
       return (
         <Router>
           <div>
             <Route path="/">
-              <Header
-                categories={this.state.data.categories}
-                cart={this.state.cart}
-              ></Header>
+              <div>
+                <Header
+                  categories={this.state.data.categories}
+                  cart={this.state.cart}
+                  changeMinicartStatus={this.changeMinicartStatus.bind(this)}
+                ></Header>
+              </div>
               <Switch>
                 {this.state.data.categories.map((category) => (
                   <Route path={"/" + category.name} exact key={category.name}>
-                    <Category
-                      products={this.getFilteredProducts(category.name)}
-                      name={category.name}
-                      key={category.name}
-                    ></Category>
+                    <div
+                      style={{
+                        backgroundColor: this.state.showMinicart
+                          ? "rgba(207, 207, 207, 0.3)"
+                          : "",
+                        minHeight: "80vh",
+                      }}
+                    >
+                      <Category
+                        products={this.getFilteredProducts(category.name)}
+                        name={category.name}
+                        key={category.name}
+                      ></Category>
+                    </div>
                   </Route>
                 ))}
+
                 <Route path="/" exact>
-                  <Category
-                    products={this.state.data.category.products}
-                    name={this.state.data.category.name + " products"}
-                  ></Category>
+                  <div
+                    style={{
+                      backgroundColor: this.state.showMinicart
+                        ? "rgba(207, 207, 207, 0.3)"
+                        : "",
+                      minHeight: "80vh",
+                    }}
+                  >
+                    <Category
+                      products={this.state.data.category.products}
+                      name={this.state.data.category.name + " products"}
+                    ></Category>
+                  </div>
                 </Route>
               </Switch>
             </Route>
+
             {this.state.data.category.products.map((product) => (
               <Switch>
                 <Route path={`/${product.category}/${product.id}`}>
-                  <PDP
-                    key={product.id}
-                    id={product.id}
-                    name={product.name}
-                    available={product.inStock}
-                    gallery={product.gallery}
-                    description={product.description}
-                    category={product.category}
-                    attributes={product.attributes}
-                    prices={product.prices}
-                    brand={product.brand}
-                    addToCart={this.addToCart.bind(this)}
-                    product={product}
-                  ></PDP>
+                  <div
+                    style={{
+                      backgroundColor: this.state.showMinicart
+                        ? "rgba(207, 207, 207, 0.3)"
+                        : "",
+                      minHeight: "80vh",
+                    }}
+                  >
+                    <PDP
+                      key={product.id}
+                      id={product.id}
+                      name={product.name}
+                      available={product.inStock}
+                      gallery={product.gallery}
+                      description={product.description}
+                      category={product.category}
+                      attributes={product.attributes}
+                      prices={product.prices}
+                      brand={product.brand}
+                      addToCart={this.addToCart.bind(this)}
+                      product={product}
+                    ></PDP>
+                  </div>
                 </Route>
               </Switch>
             ))}
             <Route path="/cart" exact>
-              <FullCart></FullCart>
+              <div
+                style={{
+                  backgroundColor: this.state.showMinicart
+                    ? "rgba(207, 207, 207, 0.3)"
+                    : "",
+                  minHeight: "80vh",
+                }}
+              >
+                <FullCart products={this.state.cart.products}></FullCart>
+              </div>
             </Route>
-            <Minicart products={this.state.cart.products}></Minicart>
+            {this.state.showMinicart ? (
+              <Minicart products={this.state.cart.products}></Minicart>
+            ) : (
+              ""
+            )}
           </div>
         </Router>
       );

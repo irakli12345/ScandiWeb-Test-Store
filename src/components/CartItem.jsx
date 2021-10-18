@@ -7,8 +7,10 @@ export default class CartItem extends Component {
     super(props);
     this.state = { currentPictureIndex: 0 };
   }
+  /* since the design included minicart, where attributes, prices and product labels were slightly different,
+  I decided that these components should accept a prop "mini", which would indicate their relative size.
+  */
   render() {
-    console.log(this.state.currentPictureIndex);
     const handleClick = (action) => {
       if (
         action === "increment" &&
@@ -26,34 +28,54 @@ export default class CartItem extends Component {
       }
     };
     const { attributes, brand, name, prices, gallery } = this.props.product;
+    const { mini, preSelectedAttributes } = this.props;
     return (
-      <div className="cartItem">
-        <div>
+      <div
+        className="cartItem"
+        style={{
+          border: mini ? 0 : "",
+          width: mini ? "330px" : "",
+        }}
+      >
+        <div style={{ width: mini ? "120px" : "" }}>
           <LeadingText
             title={brand}
             tagline={name}
-            size={30}
-            bolded={true}
+            size={mini ? 16 : 30}
+            bolded={mini ? false : true}
           ></LeadingText>
           <Prices
             currency={"usd"}
             pricesInCurrencies={prices}
             label={false}
+            mini={mini}
           ></Prices>
-          {
-            attributes.map((attributeType) => (
-              <Attributes
-                list={attributeType.items}
-                type={attributeType.type}
-                label={false}
-              ></Attributes>
-            )) /* by default, one attribute selected from the page should be selected here as well, with the option to change*/
-          }
+          {attributes.map((attributeType) => (
+            <Attributes
+              list={attributeType.items}
+              type={attributeType.type}
+              label={false}
+              mini={mini}
+              preSelectedAttributes={
+                attributeType.type === "text"
+                  ? preSelectedAttributes.text[attributeType.name]
+                  : attributeType.type === "swatch"
+                  ? preSelectedAttributes.swatch[attributeType.name]
+                  : ""
+              }
+            ></Attributes>
+          ))}
         </div>
-        <div className="right">
+        <div
+          className="right"
+          style={{
+            height: mini ? "160px" : "",
+            width: mini ? "135px" : "",
+          }}
+        >
           <div
             style={{
-              marginRight: "10px",
+              marginRight: "5px",
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
@@ -61,27 +83,37 @@ export default class CartItem extends Component {
           >
             <span
               className="attributeButton noselect"
-              style={{ width: "45px" }}
+              style={{
+                width: mini ? "24px" : "45px",
+                height: mini ? "24px" : "",
+              }}
             >
               <p
                 style={{
-                  fontSize: "32px",
+                  fontSize: mini ? "20px" : "32px",
                 }}
               >
                 +
               </p>
             </span>
             <p
-              style={{ fontSize: "24px", fontWeight: 500, textAlign: "center" }}
+              style={{
+                fontSize: mini ? "16px" : "24px",
+                fontWeight: 500,
+                textAlign: "center",
+              }}
             >
               5
             </p>
             <span
               className="attributeButton noselect"
-              style={{ width: "45px" }}
+              style={{
+                width: mini ? "24px" : "45px",
+                height: mini ? "24px" : "",
+              }}
             >
               {" "}
-              <p style={{ fontSize: "24px" }}>—</p>
+              <p style={{ fontSize: mini ? "14px" : "24px" }}>—</p>
             </span>
           </div>
           <div className="mini-cart-gallery">
@@ -90,10 +122,10 @@ export default class CartItem extends Component {
               className="noselect"
               style={{
                 position: "absolute",
-                right: "120px",
-                top: "80px",
+                right: mini ? "90px" : "120px",
+                top: mini ? "55px" : "80px",
                 backgroundColor: "rgba(255,255,255,0.5)",
-                padding: "0 15px",
+                padding: mini ? "0 8px" : "0 15px",
                 borderRadius: "5%",
               }}
               onClick={() => handleClick("decrement")}
@@ -105,10 +137,10 @@ export default class CartItem extends Component {
               className="noselect"
               style={{
                 position: "absolute",
-                left: "120px",
-                top: "80px",
+                left: mini ? "90px" : "120px",
+                top: mini ? "55px" : "80px",
                 backgroundColor: "rgba(255,255,255,0.5)",
-                padding: "0 15px",
+                padding: mini ? "0 8px" : "0 15px",
                 borderRadius: "5%",
               }}
               onClick={() => handleClick("increment")}
