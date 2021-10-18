@@ -8,8 +8,14 @@ export default class PDP extends Component {
     super(props);
     this.state = {
       defaultPictureIndex: 0,
+      selectedAttributes: {
+        id: null,
+        text: {},
+        swatch: {},
+      },
     };
   }
+
   render() {
     const {
       name,
@@ -21,9 +27,30 @@ export default class PDP extends Component {
       prices,
       brand,
       id,
+      addToCart,
+      product,
     } = this.props;
     const handleMouseOver = (itemIndex) => {
       this.setState({ defaultPictureIndex: itemIndex });
+    };
+    const handleAttributeChange = (object, type, label) => {
+      if (type == "text") {
+        this.setState({
+          selectedAttributes: {
+            id: id,
+            text: { ...this.state.selectedAttributes.text, ...object },
+            swatch: this.state.selectedAttributes.swatch,
+          },
+        });
+      } else if ((type = "swatch")) {
+        this.setState({
+          selectedAttributes: {
+            id: id,
+            text: this.state.selectedAttributes.text,
+            swatch: { ...this.state.selectedAttributes.swatch, ...object },
+          },
+        });
+      }
     };
     function paragraph() {
       return {
@@ -62,6 +89,7 @@ export default class PDP extends Component {
               list={attributeType.items}
               type={attributeType.type}
               label={attributeType.name}
+              handler={handleAttributeChange}
             ></Attributes>
           ))}
           <Prices
@@ -69,7 +97,20 @@ export default class PDP extends Component {
             currency={"usd"}
             label={true}
           ></Prices>
-          <button className="addToCart">add to cart</button>
+          <button
+            className="addToCart"
+            onClick={
+              available
+                ? () => addToCart(product, this.state.selectedAttributes)
+                : ""
+            }
+            style={{
+              backgroundColor: !available ? "grey" : "",
+              cursor: available ? "pointer" : "default",
+            }}
+          >
+            add to cart
+          </button>
           <div
             className="description"
             dangerouslySetInnerHTML={paragraph()}

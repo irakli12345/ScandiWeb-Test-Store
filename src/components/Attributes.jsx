@@ -5,17 +5,25 @@ export default class Attributes extends Component {
     super(props);
     this.state = {
       selectedValue: "",
+      selectedAttribute: "",
     };
   }
+
   render() {
-    const { list, type, label } = this.props;
+    const { list, type, label, handler } = this.props;
+    const handleClick = (item) => {
+      if (handler) {
+        handler({ [label]: item.value }, type, label);
+      }
+      this.setState({ selectedValue: item.value });
+    };
     return (
       <div>
         {label ? <p className="attributeLabel">{label + ":"}</p> : ""}
         <div className="attributes">
           {list.map((item) => (
             <span
-              onClick={() => this.setState({ selectedValue: item.value })}
+              onClick={() => handleClick(item)}
               className={`attributeButton ${
                 this.state.selectedValue === item.value
                   ? "selectedAttribute"

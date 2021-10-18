@@ -20,12 +20,12 @@ export default class FullCart extends Component {
         brand: "Nike x Stussy",
         category: "clothes",
         description: "<p>Great sneakers for everyday use!</p>",
-        gallery: (5)[
-          ("https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_2_720x.jpg?v=1612816087",
+        gallery: [
+          "https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_2_720x.jpg?v=1612816087",
           "https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_1_720x.jpg?v=1612816087",
           "https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_3_720x.jpg?v=1612816087",
           "https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_5_720x.jpg?v=1612816087",
-          "https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_4_720x.jpg?v=1612816087")
+          "https://cdn.shopify.com/s/files/1/0087/6193/3920/products/DD1381200_DEOA_4_720x.jpg?v=1612816087",
         ],
         id: "huarache-x-stussy-le",
         inStock: true,
@@ -41,7 +41,15 @@ export default class FullCart extends Component {
     ];
     return (
       <div className="fullCart">
-        <h2 style={{ fontSize: "32", fontWeight: 700 }}>Cart</h2>
+        <h2
+          style={{
+            fontSize: "32",
+            fontWeight: 700,
+            textTransform: "uppercase",
+          }}
+        >
+          Cart
+        </h2>
         {cartArray.map((product) => (
           <CartItem product={product}></CartItem>
         ))}

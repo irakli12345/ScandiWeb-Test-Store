@@ -8,10 +8,11 @@ export default class Header extends Component {
     this.state = { selectedCategory: null, currenciesExpanded: false };
   }
   render() {
+    const { cart, categories } = this.props;
     return (
       <div className="header body">
         <div className="navigation">
-          {this.props.categories.map((category, index) => (
+          {categories.map((category, index) => (
             <Link
               to={`/${category.name}`}
               key={index}
@@ -43,7 +44,7 @@ export default class Header extends Component {
           <span
             className="cart badge"
             onClick={() => console.log("boo")}
-            value={5}
+            value={cart.products.length}
           >
             <Cart></Cart>
           </span>
