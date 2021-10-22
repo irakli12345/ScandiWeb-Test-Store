@@ -117,6 +117,25 @@ export default class App extends Component {
       });
     }
   }
+  updateQuantity = (id, action, selectedAttributes) => {
+    const product = this.state.cart.products.find(
+      (product) =>
+        product.id === id &&
+        objectsEqual(product.selectedAttributes, selectedAttributes)
+    );
+    const currentIndex = this.state.cart.products.indexOf(product);
+    if (action === "increase") {
+      product.quantity += 1;
+    } else if (action === "decrease" && product.quantity > 1) {
+      product.quantity -= 1;
+    }
+    const updatedArray = [
+      ...this.state.cart.products.slice(0, currentIndex),
+      product,
+      ...this.state.cart.products.slice(currentIndex + 1),
+    ];
+    this.setState({ products: updatedArray });
+  };
   changeMinicartStatus() {
     this.setState({ showMinicart: !this.state.showMinicart });
   }
@@ -209,11 +228,17 @@ export default class App extends Component {
                   minHeight: "80vh",
                 }}
               >
-                <FullCart products={this.state.cart.products}></FullCart>
+                <FullCart
+                  products={this.state.cart.products}
+                  updateQuantity={this.updateQuantity}
+                ></FullCart>
               </div>
             </Route>
             {this.state.showMinicart ? (
-              <Minicart products={this.state.cart.products}></Minicart>
+              <Minicart
+                products={this.state.cart.products}
+                updateQuantity={this.updateQuantity}
+              ></Minicart>
             ) : (
               ""
             )}

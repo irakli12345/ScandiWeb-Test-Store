@@ -105,7 +105,7 @@ export default class PDP extends Component {
                 : ""
             }
             style={{
-              backgroundColor: !available ? "grey" : "",
+              backgroundColor: !available ? "#C0C0C0" : "",
               cursor: available ? "pointer" : "default",
             }}
           >

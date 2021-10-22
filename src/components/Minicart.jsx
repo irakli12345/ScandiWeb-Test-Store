@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default class Minicart extends Component {
   render() {
-    const { products } = this.props;
+    const { products, updateQuantity } = this.props;
     return (
       <div className="minicart">
         <div>
@@ -24,6 +24,9 @@ export default class Minicart extends Component {
               product={product}
               mini={true}
               preSelectedAttributes={product.selectedAttributes}
+              updateQuantity={(id, action, preSelectedAttributes) =>
+                updateQuantity(id, action, preSelectedAttributes)
+              }
             ></CartItem>
           ))}
         </div>
