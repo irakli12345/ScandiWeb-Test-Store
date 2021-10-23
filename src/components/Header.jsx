@@ -1,14 +1,32 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Logo from "./svg icons/Logo";
-import Cart from "./svg icons/Cart";
+import Actions from "./Actions";
 export default class Header extends Component {
   constructor(props) {
     super(props);
-    this.state = { selectedCategory: null, currenciesExpanded: false };
+    this.state = { selectedCategory: null };
   }
   render() {
-    const { cart, categories, changeMinicartStatus } = this.props;
+    const {
+      cart,
+      categories,
+      changeMinicartStatus,
+      expandCurrencies,
+      currenciesExpanded,
+    } = this.props;
+
+    const menuItemsStyle = (index) => {
+      return {
+        color: "#1d1f22",
+        height: "120px",
+        display: "flex",
+        padding: "0px 15px",
+        fontWeight: "600",
+        borderBottom:
+          this.state.selectedCategory === index ? "2px solid #5ece7b" : "",
+      };
+    };
     return (
       <div className="header body">
         <div className="navigation">
@@ -16,40 +34,30 @@ export default class Header extends Component {
             <Link
               to={`/${category.name}`}
               key={index}
-              className={`link menuItems ${
-                this.state.selectedCategory === index ? "active" : ""
-              }`}
+              className="link"
+              style={menuItemsStyle(index)}
               onClick={() => this.setState({ selectedCategory: index })}
             >
-              <span>{category.name.toUpperCase() + " "}</span>
+              <span
+                style={{
+                  margin: "auto",
+                  color: this.state.selectedCategory === index ? "#5ece7b" : "",
+                }}
+              >
+                {category.name.toUpperCase() + " "}
+              </span>
             </Link>
           ))}
         </div>
         <Link to="/" onClick={() => this.setState({ selectedCategory: null })}>
           <Logo></Logo>
         </Link>
-        <div className="actions">
-          <div
-            className="group noselect"
-            onClick={() =>
-              this.setState({
-                currenciesExpanded: !this.state.currenciesExpanded,
-              })
-            }
-          >
-            {" "}
-            <span id="dollar">$</span>
-            <span id="arrow">⌄</span>
-          </div>
-          <span
-            className="cart badge noselect"
-            style={{ cursor: "pointer" }}
-            onClick={changeMinicartStatus}
-            value={cart.products.length}
-          >
-            <Cart></Cart>
-          </span>
-        </div>
+        <Actions
+          cart={cart}
+          changeMinicartStatus={changeMinicartStatus}
+          expandCurrencies={expandCurrencies}
+          currenciesExpanded={currenciesExpanded}
+        ></Actions>
       </div>
     );
   }

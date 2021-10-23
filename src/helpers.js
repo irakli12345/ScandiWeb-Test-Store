@@ -8,6 +8,8 @@ export const formatPrice = function (currency, amount) {
     return `$${amount}`;
   } else if (currency.toLowerCase() === "eur") {
     return `€${amount}`;
+  } else if (currency.toLowerCase() === "gbp") {
+    return `£${amount}`;
   } else if (currency.toLowerCase() === "aud") {
     return `AU$${amount}`;
   } else if (currency.toLowerCase() === "jpy") {
@@ -16,6 +18,23 @@ export const formatPrice = function (currency, amount) {
     return `₽${amount}`;
   } else {
     return amount;
+  }
+};
+export const formatCurrency = function (currency) {
+  if (currency.toLowerCase() === "usd") {
+    return `$ ${currency}`;
+  } else if (currency.toLowerCase() === "eur") {
+    return `€ ${currency}`;
+  } else if (currency.toLowerCase() === "aud") {
+    return `$ ${currency}`;
+  } else if (currency.toLowerCase() === "gbp") {
+    return `£ ${currency}`;
+  } else if (currency.toLowerCase() === "jpy") {
+    return `¥ ${currency}`;
+  } else if (currency.toLowerCase() === "rub") {
+    return `₽ ${currency}`;
+  } else {
+    return currency;
   }
 };
 export function objectsEqual(object1, object2) {

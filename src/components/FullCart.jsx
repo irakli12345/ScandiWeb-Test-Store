@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import CartItem from "./CartItem";
 export default class FullCart extends Component {
   render() {
-    const { products, updateQuantity } = this.props;
+    const { products, updateQuantity, selectedCurrency } = this.props;
     return (
       <div className="fullCart">
         <h2
@@ -21,6 +21,7 @@ export default class FullCart extends Component {
             updateQuantity={(id, action, preSelectedAttributes) =>
               updateQuantity(id, action, preSelectedAttributes)
             }
+            selectedCurrency={selectedCurrency}
           ></CartItem>
         ))}
       </div>

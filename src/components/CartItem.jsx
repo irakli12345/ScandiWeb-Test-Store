@@ -14,7 +14,8 @@ export default class CartItem extends Component {
   render() {
     const { attributes, brand, name, prices, gallery, quantity } =
       this.props.product;
-    const { mini, preSelectedAttributes, updateQuantity } = this.props;
+    const { mini, preSelectedAttributes, updateQuantity, selectedCurrency } =
+      this.props;
 
     return (
       <div
@@ -36,6 +37,7 @@ export default class CartItem extends Component {
             pricesInCurrencies={prices}
             label={false}
             mini={mini}
+            currency={selectedCurrency}
           ></Prices>
           {attributes.map((attributeType) => (
             <Attributes

@@ -8,6 +8,7 @@ import Category from "./components/Category";
 import PDP from "./components/PDP";
 import FullCart from "./components/FullCart";
 import Minicart from "./components/Minicart";
+import Currencies from "./components/Currencies";
 import { objectsEqual } from "./helpers";
 export default class App extends Component {
   constructor(props) {
@@ -20,6 +21,8 @@ export default class App extends Component {
         total: 0,
       },
       showMinicart: false,
+      currenciesExpanded: false,
+      selectedCurrency: "USD",
     };
   }
   query = gql`
@@ -139,6 +142,12 @@ export default class App extends Component {
   changeMinicartStatus() {
     this.setState({ showMinicart: !this.state.showMinicart });
   }
+  expandCurrencies() {
+    this.setState({ currenciesExpanded: !this.state.currenciesExpanded });
+  }
+  switchCurrency(currency) {
+    this.setState({ selectedCurrency: currency });
+  }
   render() {
     if (this.state.loaded) {
       return (
@@ -150,6 +159,8 @@ export default class App extends Component {
                   categories={this.state.data.categories}
                   cart={this.state.cart}
                   changeMinicartStatus={this.changeMinicartStatus.bind(this)}
+                  expandCurrencies={this.expandCurrencies.bind(this)}
+                  currenciesExpanded={this.state.currenciesExpanded}
                 ></Header>
               </div>
               <Switch>
@@ -167,6 +178,7 @@ export default class App extends Component {
                         products={this.getFilteredProducts(category.name)}
                         name={category.name}
                         key={category.name}
+                        selectedCurrency={this.state.selectedCurrency}
                       ></Category>
                     </div>
                   </Route>
@@ -184,6 +196,7 @@ export default class App extends Component {
                     <Category
                       products={this.state.data.category.products}
                       name={this.state.data.category.name + " products"}
+                      selectedCurrency={this.state.selectedCurrency}
                     ></Category>
                   </div>
                 </Route>
@@ -214,6 +227,7 @@ export default class App extends Component {
                       brand={product.brand}
                       addToCart={this.addToCart.bind(this)}
                       product={product}
+                      selectedCurrency={this.state.selectedCurrency}
                     ></PDP>
                   </div>
                 </Route>
@@ -231,6 +245,7 @@ export default class App extends Component {
                 <FullCart
                   products={this.state.cart.products}
                   updateQuantity={this.updateQuantity}
+                  selectedCurrency={this.state.selectedCurrency}
                 ></FullCart>
               </div>
             </Route>
@@ -238,7 +253,16 @@ export default class App extends Component {
               <Minicart
                 products={this.state.cart.products}
                 updateQuantity={this.updateQuantity}
+                selectedCurrency={this.state.selectedCurrency}
               ></Minicart>
+            ) : (
+              ""
+            )}
+            {this.state.currenciesExpanded ? (
+              <Currencies
+                currencyList={this.state.data.currencies}
+                switchCurrency={this.switchCurrency.bind(this)}
+              ></Currencies>
             ) : (
               ""
             )}

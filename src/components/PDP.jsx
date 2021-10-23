@@ -29,6 +29,7 @@ export default class PDP extends Component {
       id,
       addToCart,
       product,
+      selectedCurrency,
     } = this.props;
     const handleMouseOver = (itemIndex) => {
       this.setState({ defaultPictureIndex: itemIndex });
@@ -94,7 +95,7 @@ export default class PDP extends Component {
           ))}
           <Prices
             pricesInCurrencies={prices}
-            currency={"usd"}
+            currency={selectedCurrency}
             label={true}
           ></Prices>
           <button

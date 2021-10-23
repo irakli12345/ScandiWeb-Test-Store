@@ -7,6 +7,7 @@ export default class Category extends Component {
     this.state = {};
   }
   render() {
+    const { selectedCurrency } = this.props;
     return (
       <div className="category body">
         <h1 className="category-title">{capitalize(this.props.name)}</h1>
@@ -20,6 +21,7 @@ export default class Category extends Component {
               available={product.inStock}
               headImg={product.gallery[0]}
               category={product.category}
+              selectedCurrency={selectedCurrency}
             ></Card>
           ))}
         </div>
