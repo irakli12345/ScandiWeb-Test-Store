@@ -8,10 +8,16 @@ export default class Category extends Component {
   }
   render() {
     const { selectedCurrency } = this.props;
+    const categoryStyles = {
+      display: "flex",
+      flexWrap: "wrap",
+      width: "100%",
+      justifyContent: "space-between",
+    };
     return (
       <div className="category body">
         <h1 className="category-title">{capitalize(this.props.name)}</h1>
-        <div className="products-container">
+        <div style={categoryStyles}>
           {this.props.products.map((product) => (
             <Card
               key={product.id}

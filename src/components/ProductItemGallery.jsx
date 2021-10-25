@@ -41,7 +41,10 @@ export default class ProductItemGallery extends Component {
     };
     return (
       <div className="mini-cart-gallery">
-        <img src={gallery[this.state.currentPictureIndex]}></img>
+        <img
+          src={gallery[this.state.currentPictureIndex]}
+          style={{ height: "100%", width: "100%", objectFit: "cover" }}
+        ></img>
         <span
           className="noselect"
           style={leftArrowStyle}

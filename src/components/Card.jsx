@@ -20,15 +20,20 @@ export default class Card extends Component {
       fontSize: "18px",
       fontWeight: 500,
     };
+    const imgStyles = { height: "70%", width: "100%", objectFit: "cover" };
     const amount = selectCurrency(selectedCurrency.toLowerCase()).amount;
     return (
-      <Link className="link regular" to={`/${category}/${id}`}>
+      <Link
+        className="link"
+        to={`/${category}/${id}`}
+        style={{ color: "black" }}
+      >
         {" "}
         <div className={`card ${!available ? "outOfStock" : ""}`}>
           {" "}
           <span className="imgWithIcon">
             {" "}
-            <img src={headImg}></img>
+            <img src={headImg} style={imgStyles}></img>
             {available ? (
               <span className="overlayCart">
                 <OverlayCart></OverlayCart>

@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import CartItem from "./CartItem";
 import { Link } from "react-router-dom";
+import { formatPrice, findIndex } from "../helpers";
 
 export default class Minicart extends Component {
   render() {
     const { products, updateQuantity, selectedCurrency } = this.props;
+    let total = 0;
+    console.log(total);
     return (
       <div className="minicart">
         <div>
@@ -18,7 +21,7 @@ export default class Minicart extends Component {
           </p>
           <p style={{ display: "inline" }}> {products.length + " products"}</p>
         </div>
-        <div style={{ marginTop: "10px" }}>
+        <div style={{ minHeight: "300px" }}>
           {products.map((product) => (
             <CartItem
               product={product}
@@ -31,7 +34,55 @@ export default class Minicart extends Component {
             ></CartItem>
           ))}
         </div>
-        <Link to="/cart">view full cart</Link>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <p style={{ fontFamily: "Roboto", fontWeight: 500, fontSize: 16 }}>
+            Total
+          </p>
+          <p style={{ fontFamily: "Roboto", fontWeight: 700, fontSize: 16 }}>
+            {formatPrice(selectedCurrency, 0)}
+          </p>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Link to="/cart" style={{ textDecoration: "none", color: "black" }}>
+            <span
+              style={{
+                padding: "16px 32px",
+                width: "140px",
+                height: "43px",
+                textTransform: "uppercase",
+                border: "1px solid #1D1F22",
+                fontWeight: 600,
+                boxSizing: "border-box",
+                fontSize: "14px",
+              }}
+            >
+              view bag
+            </span>
+          </Link>
+          <span
+            style={{
+              padding: "16px 32px",
+              textTransform: "uppercase",
+              backgroundColor: "#5ECE7B",
+              fontWeight: 600,
+              color: "white",
+              fontSize: "14px",
+            }}
+          >
+            checkout
+          </span>
+        </div>
       </div>
     );
   }

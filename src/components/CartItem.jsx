@@ -56,10 +56,10 @@ export default class CartItem extends Component {
           ))}
         </div>
         <div
-          className="right"
           style={{
             height: mini ? "160px" : "200px",
             width: mini ? "135px" : "180px",
+            display: "flex",
           }}
         >
           <ProductQuantity

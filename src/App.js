@@ -9,7 +9,12 @@ import PDP from "./components/PDP";
 import FullCart from "./components/FullCart";
 import Minicart from "./components/Minicart";
 import Currencies from "./components/Currencies";
-import { objectsEqual } from "./helpers";
+import {
+  objectsEqual,
+  identifyUniqueProduct,
+  findExistingProduct,
+  findIndex,
+} from "./helpers";
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -68,7 +73,8 @@ export default class App extends Component {
   }
   getFilteredProducts = function (categoryName) {
     return this.state.data.category.products.filter(
-      (product) => product["category"] === categoryName
+      (product) =>
+        product["category"].toLowerCase() === categoryName.toLowerCase()
     );
   };
   /* if the user adds one product, but with different options, it's treated as different product and listed separately.
@@ -76,15 +82,7 @@ export default class App extends Component {
     Before adding a product, I use .every() method to check whether all existing products in an array are different from the new addition.
     If it is, I add a new, separate product. If it's not, I update the quantity of existing product*/
   addToCart(product, attributes) {
-    const check = this.state.cart.products.every(
-      (item) =>
-        !(
-          item.id === product.id &&
-          objectsEqual(item.selectedAttributes.swatch, attributes.swatch) &&
-          objectsEqual(item.selectedAttributes.text, attributes.text)
-        )
-    );
-    if (check) {
+    if (identifyUniqueProduct(product, attributes, this.state.cart.products)) {
       const updatedProductsArr = this.state.cart.products.concat({
         ...product,
         selectedAttributes: attributes,
@@ -96,11 +94,10 @@ export default class App extends Component {
         },
       });
     } else {
-      const existingProduct = this.state.cart.products.find(
-        (item) =>
-          item.id === product.id &&
-          objectsEqual(item.selectedAttributes.swatch, attributes.swatch) &&
-          objectsEqual(item.selectedAttributes.text, attributes.text)
+      const existingProduct = findExistingProduct(
+        product,
+        attributes,
+        this.state.cart.products
       );
       const currentIndex = this.state.cart.products.indexOf(existingProduct);
       const count = existingProduct.quantity + 1;

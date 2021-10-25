@@ -9,7 +9,9 @@
 * {
   font-family: "Raleway";
 }
-
+.bold {
+  font-weight: 600;
+}
 .header {
   display: flex;
   justify-content: space-between;
@@ -24,10 +26,6 @@
 .body {
   margin: 0px 150px;
 }
-
-.regular {
-  color: black;
-}
 .link {
   text-decoration: none;
 }
@@ -41,7 +39,6 @@
   cursor: pointer;
 }
 .cart {
-  height: 100%;
   margin: auto;
   display: flex;
 }
@@ -63,13 +60,6 @@
   font-family: "Roboto";
 }
 
-.products-container {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  justify-content: space-between;
-}
-
 .card {
   padding: 1rem;
   height: 500px;
@@ -77,11 +67,6 @@
 }
 .card:hover {
   box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
-}
-img {
-  height: 70%;
-  width: 100%;
-  object-fit: cover;
 }
 .overlayCart {
   position: absolute;
@@ -114,25 +99,8 @@ img {
   width: 55%;
   display: flex;
 }
-.mini-items {
-  display: flex;
-  flex-direction: column;
-}
-.mini-items > * {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  margin-top: 20px;
-  opacity: 0.7;
-  cursor: pointer;
-}
-.mini-items > *:hover {
+.smallGalleryImage:hover {
   opacity: 1 !important;
-}
-.onDisplay {
-  object-fit: cover;
-  width: 70%;
-  margin: auto;
 }
 .product-details {
   width: 45%;
@@ -141,9 +109,6 @@ img {
   margin: auto;
   height: 70vh;
   justify-content: space-around;
-}
-.bold {
-  font-weight: 600;
 }
 .attributes {
   display: flex;
@@ -205,9 +170,6 @@ img {
   padding-bottom: 1em;
   align-items: center;
 }
-.right {
-  display: flex;
-}
 .mini-cart-gallery {
   height: 165px;
   width: 135px;
@@ -225,6 +187,9 @@ img {
   right: 180px;
   background-color: white;
   padding: 15px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .currencies {
   position: absolute;
