@@ -91,6 +91,7 @@ export default class App extends Component {
       this.setState({
         cart: {
           products: updatedProductsArr,
+          total: this.calculateTotal(updatedProductsArr),
         },
       });
     } else {
@@ -113,10 +114,22 @@ export default class App extends Component {
       this.setState({
         cart: {
           products: updatedArray,
+          total: this.calculateTotal(updatedArray),
         },
       });
     }
   }
+  calculateTotal = (updatedArr) => {
+    let total = 0;
+    for (let i = 0; i < updatedArr.length; i++) {
+      console.log("going over the items");
+      total +=
+        updatedArr[i].prices[
+          findIndex(this.state.selectedCurrency, updatedArr[i].prices)
+        ].amount * updatedArr[i].quantity;
+    }
+    return total;
+  };
   updateQuantity = (id, action, selectedAttributes) => {
     const product = this.state.cart.products.find(
       (product) =>
@@ -248,7 +261,7 @@ export default class App extends Component {
             </Route>
             {this.state.showMinicart ? (
               <Minicart
-                products={this.state.cart.products}
+                cart={this.state.cart}
                 updateQuantity={this.updateQuantity}
                 selectedCurrency={this.state.selectedCurrency}
               ></Minicart>

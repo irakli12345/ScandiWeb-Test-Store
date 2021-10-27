@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Cart from "./svg icons/Cart";
+import Cart from "../assets/Cart";
 
 export default class Actions extends Component {
   render() {

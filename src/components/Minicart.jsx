@@ -5,9 +5,8 @@ import { formatPrice, findIndex } from "../helpers";
 
 export default class Minicart extends Component {
   render() {
-    const { products, updateQuantity, selectedCurrency } = this.props;
-    let total = 0;
-    console.log(total);
+    const { updateQuantity, selectedCurrency } = this.props;
+    const { products, total } = this.props.cart;
     return (
       <div className="minicart">
         <div>
@@ -44,7 +43,7 @@ export default class Minicart extends Component {
             Total
           </p>
           <p style={{ fontFamily: "Roboto", fontWeight: 700, fontSize: 16 }}>
-            {formatPrice(selectedCurrency, 0)}
+            {formatPrice(selectedCurrency, Math.round(total))}
           </p>
         </div>
         <div

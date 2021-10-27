@@ -59,7 +59,7 @@ export const filteredPrice = (pricesInCurrencies, selectedCurrency) => {
   return pricesInCurrencies.filter(
     (priceObj) =>
       priceObj.currency.toLowerCase() === selectedCurrency.toLowerCase()
-  );
+  )[0];
 };
 
 export function objectsEqual(object1, object2) {
@@ -78,18 +78,8 @@ export function objectsEqual(object1, object2) {
 
   return true;
 }
-export function findIndex(currency) {
-  if (currency.toLowerCase() === "usd") {
-    return 0;
-  } else if (currency.toLowerCase() === "gbp") {
-    return 1;
-  } else if (currency.toLowerCase() === "gbp") {
-    return 2;
-  } else if (currency.toLowerCase() === "jpy") {
-    return 3;
-  } else if (currency.toLowerCase() === "rub") {
-    return 4;
-  } else {
-    return null;
-  }
+export function findIndex(currency, arr) {
+  return arr.findIndex(
+    (item) => item.currency.toLowerCase() === currency.toLowerCase()
+  );
 }

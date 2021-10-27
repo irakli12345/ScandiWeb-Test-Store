@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Logo from "./svg icons/Logo";
+import Logo from "../assets/Logo";
 import Actions from "./Actions";
 export default class Header extends Component {
   constructor(props) {

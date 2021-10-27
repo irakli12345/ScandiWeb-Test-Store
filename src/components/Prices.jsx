@@ -7,6 +7,7 @@ export default class Prices extends Component {
   render() {
     const { pricesInCurrencies, currency, label, mini } = this.props;
     const displayPrice = filteredPrice(pricesInCurrencies, currency);
+    console.log(displayPrice);
     return (
       <div>
         {label ? <p className="attributeLabel">Price:</p> : ""}
@@ -17,7 +18,7 @@ export default class Prices extends Component {
             fontWeight: mini ? "500" : "",
           }}
         >
-          {formatPrice(displayPrice[0].currency, displayPrice[0].amount)}
+          {formatPrice(displayPrice.currency, displayPrice.amount)}
         </p>
       </div>
     );
