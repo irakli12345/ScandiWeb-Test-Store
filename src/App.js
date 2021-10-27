@@ -3,12 +3,12 @@ import "./App.css";
 import React, { Component } from "react";
 import { request, gql } from "graphql-request";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Header from "./components/Header";
-import Category from "./components/Category";
-import PDP from "./components/PDP";
-import FullCart from "./components/FullCart";
-import Minicart from "./components/Minicart";
-import Currencies from "./components/Currencies";
+import Header from "./components/Header/Header";
+import Category from "./components/Category/Category";
+import PDP from "./components/PDP/PDP";
+import FullCart from "./components/Cart/FullCart";
+import Minicart from "./components/Overlays/Minicart";
+import Currencies from "./components/Overlays/Currencies";
 import {
   objectsEqual,
   identifyUniqueProduct,
@@ -147,7 +147,12 @@ export default class App extends Component {
       product,
       ...this.state.cart.products.slice(currentIndex + 1),
     ];
-    this.setState({ products: updatedArray });
+    this.setState({
+      cart: {
+        products: updatedArray,
+        total: this.calculateTotal(updatedArray),
+      },
+    });
   };
   changeMinicartStatus() {
     this.setState({ showMinicart: !this.state.showMinicart });

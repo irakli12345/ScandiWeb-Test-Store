@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import OverlayCart from "../assets/Overlaycart";
+import OverlayCart from "../../assets/Overlaycart";
 import { Link } from "react-router-dom";
-import { formatPrice } from "../helpers";
+import { formatPrice } from "../../helpers";
 export default class Card extends Component {
   constructor(props) {
     super(props);

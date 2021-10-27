@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { capitalize } from "../helpers";
+import { capitalize } from "../../helpers";
 import Card from "./Card";
 export default class Category extends Component {
   constructor(props) {

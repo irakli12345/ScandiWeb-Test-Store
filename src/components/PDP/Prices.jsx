@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { formatPrice, filteredPrice } from "../helpers";
+import { formatPrice, filteredPrice } from "../../helpers";
 export default class Prices extends Component {
   constructor(props) {
     super(props);

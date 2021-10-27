@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { formatCurrency } from "../helpers";
+import { formatCurrency } from "../../helpers.js";
 export default class Currencies extends Component {
   render() {
     const { currencyList, switchCurrency } = this.props;

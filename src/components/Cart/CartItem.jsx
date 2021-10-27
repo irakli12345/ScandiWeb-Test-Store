@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import LeadingText from "./LeadingText";
-import Prices from "./Prices";
-import Attributes from "./Attributes";
+import LeadingText from "../PDP/LeadingText";
+import Prices from "../PDP/Prices";
+import Attributes from "../PDP/Attributes";
 import ProductQuantity from "./ProductQuantity";
 import ProductItemGallery from "./ProductItemGallery";
 export default class CartItem extends Component {

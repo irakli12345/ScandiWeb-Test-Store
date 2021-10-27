@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import CartItem from "./CartItem";
+import CartItem from "../Cart/CartItem";
 import { Link } from "react-router-dom";
-import { formatPrice, findIndex } from "../helpers";
+import { formatPrice, findIndex } from "../../helpers";
 
 export default class Minicart extends Component {
   render() {
