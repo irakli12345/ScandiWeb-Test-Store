@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { request, gql } from "graphql-request";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/Header/Header";
@@ -15,7 +15,7 @@ import {
   findExistingProduct,
   findIndex,
 } from "./helpers";
-export default class App extends Component {
+export default class App extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -122,7 +122,6 @@ export default class App extends Component {
   calculateTotal = (updatedArr) => {
     let total = 0;
     for (let i = 0; i < updatedArr.length; i++) {
-      console.log("going over the items");
       total +=
         updatedArr[i].prices[
           findIndex(this.state.selectedCurrency, updatedArr[i].prices)
@@ -155,10 +154,16 @@ export default class App extends Component {
     });
   };
   changeMinicartStatus() {
-    this.setState({ showMinicart: !this.state.showMinicart });
+    this.setState({
+      showMinicart: !this.state.showMinicart,
+      currenciesExpanded: false,
+    });
   }
   expandCurrencies() {
-    this.setState({ currenciesExpanded: !this.state.currenciesExpanded });
+    this.setState({
+      currenciesExpanded: !this.state.currenciesExpanded,
+      showMinicart: false,
+    });
   }
   switchCurrency(currency) {
     this.setState({ selectedCurrency: currency });

@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/Logo";
 import Actions from "./Actions";
-export default class Header extends Component {
+export default class Header extends PureComponent {
   constructor(props) {
     super(props);
     this.state = { selectedCategory: null };

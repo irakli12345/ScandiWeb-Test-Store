@@ -1,5 +1,3 @@
-# Getting Started with Create React App
-
 It took me few weeks because I wanted to get everything right. I learned so much throughout the process.
 
 ## Available Scripts

@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 
-export default class ProductQuantity extends Component {
+export default class ProductQuantity extends PureComponent {
   render() {
     const { mini, preSelectedAttributes, updateQuantity, quantity, id } =
       this.props;

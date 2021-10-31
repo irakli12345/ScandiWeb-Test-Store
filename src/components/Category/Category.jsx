@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { capitalize } from "../../helpers";
 import Card from "./Card";
-export default class Category extends Component {
+export default class Category extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {};

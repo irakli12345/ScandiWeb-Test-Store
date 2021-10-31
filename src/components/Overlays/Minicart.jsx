@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import CartItem from "../Cart/CartItem";
 import { Link } from "react-router-dom";
 import { formatPrice, findIndex } from "../../helpers";
 
-export default class Minicart extends Component {
+export default class Minicart extends PureComponent {
   render() {
     const { updateQuantity, selectedCurrency } = this.props;
     const { products, total } = this.props.cart;

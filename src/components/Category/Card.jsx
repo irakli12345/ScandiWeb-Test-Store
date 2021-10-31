@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import OverlayCart from "../../assets/Overlaycart";
 import { Link } from "react-router-dom";
 import { formatPrice } from "../../helpers";
-export default class Card extends Component {
+export default class Card extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {};

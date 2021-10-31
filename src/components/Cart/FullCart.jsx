@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import CartItem from "./CartItem";
-export default class FullCart extends Component {
+export default class FullCart extends PureComponent {
   render() {
     const { products, updateQuantity, selectedCurrency } = this.props;
     return (

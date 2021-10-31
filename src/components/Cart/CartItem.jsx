@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import LeadingText from "../PDP/LeadingText";
 import Prices from "../PDP/Prices";
 import Attributes from "../PDP/Attributes";
 import ProductQuantity from "./ProductQuantity";
 import ProductItemGallery from "./ProductItemGallery";
-export default class CartItem extends Component {
+export default class CartItem extends PureComponent {
   constructor(props) {
     super(props);
   }

@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import Cart from "../../assets/Cart";
 
-export default class Actions extends Component {
+export default class Actions extends PureComponent {
   render() {
     const { cart, changeMinicartStatus, expandCurrencies, currenciesExpanded } =
       this.props;

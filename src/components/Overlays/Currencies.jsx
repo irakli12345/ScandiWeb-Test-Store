@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { formatCurrency } from "../../helpers.js";
-export default class Currencies extends Component {
+export default class Currencies extends PureComponent {
   render() {
     const { currencyList, switchCurrency } = this.props;
     const currencyTextStyle = {
