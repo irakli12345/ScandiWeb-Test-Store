@@ -9,8 +9,8 @@ export default class Category extends PureComponent {
   render() {
     const { selectedCurrency } = this.props;
     const categoryStyles = {
-      display: "flex",
-      flexWrap: "wrap",
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr 1fr",
       width: "100%",
       justifyContent: "space-between",
     };

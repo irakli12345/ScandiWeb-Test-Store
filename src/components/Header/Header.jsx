@@ -30,6 +30,22 @@ export default class Header extends PureComponent {
     return (
       <div className="header body">
         <div className="navigation">
+          <Link
+            to={`/`}
+            key={"100"}
+            className="link"
+            style={menuItemsStyle(100)}
+            onClick={() => this.setState({ selectedCategory: 100 })}
+          >
+            <span
+              style={{
+                margin: "auto",
+                color: this.state.selectedCategory === 100 ? "#5ece7b" : "",
+              }}
+            >
+              {"all".toUpperCase() + " "}
+            </span>
+          </Link>
           {categories.map((category, index) => (
             <Link
               to={`/${category.name}`}

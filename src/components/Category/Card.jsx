@@ -23,13 +23,12 @@ export default class Card extends PureComponent {
     const imgStyles = { height: "70%", width: "100%", objectFit: "cover" };
     const amount = selectCurrency(selectedCurrency.toLowerCase()).amount;
     return (
-      <Link
-        className="link"
-        to={`/${category}/${id}`}
-        style={{ color: "black" }}
-      >
-        {" "}
-        <div className={`card ${!available ? "outOfStock" : ""}`}>
+      <div className={`card ${!available ? "outOfStock" : ""}`}>
+        <Link
+          className="link"
+          to={`/${category}/${id}`}
+          style={{ color: "black" }}
+        >
           {" "}
           <span className="imgWithIcon">
             {" "}
@@ -44,8 +43,8 @@ export default class Card extends PureComponent {
           </span>
           <p className="card-title">{name}</p>
           <p style={cardPriceStyles}>{formatPrice(selectedCurrency, amount)}</p>
-        </div>
-      </Link>
+        </Link>
+      </div>
     );
   }
 }
