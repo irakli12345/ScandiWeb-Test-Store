@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import LeadingText from "./LeadingText";
 import Attributes from "./Attributes";
 import Prices from "./Prices";
 import PDPGallery from "./PDPGallery";
 import Description from "./Description";
-export default class PDP extends Component {
+export default class PDP extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {

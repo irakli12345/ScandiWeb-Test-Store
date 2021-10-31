@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 
-export default class PDPGallery extends Component {
+export default class PDPGallery extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {

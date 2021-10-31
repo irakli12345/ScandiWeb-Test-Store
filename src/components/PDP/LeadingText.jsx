@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 
-export default class LeadingText extends Component {
+export default class LeadingText extends PureComponent {
   render() {
     const { bolded, title, tagline, size } = this.props;
     return (

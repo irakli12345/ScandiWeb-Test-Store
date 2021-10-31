@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
 
-export default class Description extends Component {
+export default class Description extends PureComponent {
   render() {
     const { description, category, id } = this.props;
     function paragraph() {

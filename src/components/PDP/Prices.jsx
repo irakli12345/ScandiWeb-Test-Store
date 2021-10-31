@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { formatPrice, filteredPrice } from "../../helpers";
-export default class Prices extends Component {
+export default class Prices extends PureComponent {
   constructor(props) {
     super(props);
   }
