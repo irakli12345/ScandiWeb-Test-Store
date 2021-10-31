@@ -19,8 +19,7 @@ export default class Attributes extends PureComponent {
     }
   }
   render() {
-    const { list, type, label, handler, mini, preSelectedAttributes } =
-      this.props;
+    const { list, type, label, handler, mini } = this.props;
     const handleClick = (item) => {
       if (handler) {
         handler({ [label]: item.value }, type, label);
@@ -58,6 +57,7 @@ export default class Attributes extends PureComponent {
         <div className="attributes" style={attributesContainerStyle}>
           {list.map((item) => (
             <span
+              key={item.id}
               onClick={() => handleClick(item)}
               className={`attributeButton ${
                 this.state.selectedValue === item.value

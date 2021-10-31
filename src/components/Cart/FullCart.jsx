@@ -14,7 +14,7 @@ export default class FullCart extends PureComponent {
         >
           Cart
         </h2>
-        {products.map((product) => (
+        {products.map((product, index) => (
           <CartItem
             product={product}
             preSelectedAttributes={product.selectedAttributes}
@@ -22,6 +22,7 @@ export default class FullCart extends PureComponent {
               updateQuantity(id, action, preSelectedAttributes)
             }
             selectedCurrency={selectedCurrency}
+            key={product.id.concat(index)}
           ></CartItem>
         ))}
       </div>

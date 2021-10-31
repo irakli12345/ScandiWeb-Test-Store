@@ -30,6 +30,8 @@ export default class PDPGallery extends PureComponent {
               onMouseOver={() => handleMouseOver(index)}
               style={smallImageStyles}
               className="smallGalleryImage"
+              key={index + picture}
+              alt=""
             ></img>
           ))}
         </div>
@@ -41,6 +43,7 @@ export default class PDPGallery extends PureComponent {
             margin: "auto",
             height: "80%",
           }}
+          alt=""
         ></img>
       </div>
     );

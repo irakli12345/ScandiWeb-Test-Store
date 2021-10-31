@@ -33,7 +33,7 @@ export default class Card extends PureComponent {
           {" "}
           <span className="imgWithIcon">
             {" "}
-            <img src={headImg} style={imgStyles}></img>
+            <img src={headImg} style={imgStyles} alt="head"></img>
             {available ? (
               <span className="overlayCart">
                 <OverlayCart></OverlayCart>

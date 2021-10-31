@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import React, { PureComponent } from "react";
 import { request, gql } from "graphql-request";
@@ -166,7 +165,9 @@ export default class App extends PureComponent {
     });
   }
   switchCurrency(currency) {
-    this.setState({ selectedCurrency: currency });
+    this.setState({
+      selectedCurrency: currency,
+    });
   }
   render() {
     if (this.state.loaded) {
@@ -224,7 +225,7 @@ export default class App extends PureComponent {
             </Route>
 
             {this.state.data.category.products.map((product) => (
-              <Switch>
+              <Switch key={product.id}>
                 <Route path={`/${product.category}/${product.id}`}>
                   <div
                     style={{

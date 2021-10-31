@@ -1,23 +1,14 @@
 import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
-
+import parse from "html-react-parser";
 export default class Description extends PureComponent {
   render() {
     const { description, category, id } = this.props;
-    function paragraph() {
-      return {
-        __html:
-          description.length > 200
-            ? description.substring(0, 200) + "..."
-            : description,
-      };
-    }
     return (
       <div>
-        <div
-          className="description"
-          dangerouslySetInnerHTML={paragraph()}
-        ></div>
+        <div className="description">
+          {parse(description.substring(0, 200))}
+        </div>
         {description.length > 200 ? (
           <Link to={`/${category}/${id}/description`}>
             Read full description

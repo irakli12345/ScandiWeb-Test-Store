@@ -44,6 +44,7 @@ export default class ProductItemGallery extends PureComponent {
         <img
           src={gallery[this.state.currentPictureIndex]}
           style={{ height: "100%", width: "100%", objectFit: "cover" }}
+          alt="gallery"
         ></img>
         <span
           className="noselect"

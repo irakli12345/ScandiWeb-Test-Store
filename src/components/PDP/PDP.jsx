@@ -38,7 +38,7 @@ export default class PDP extends PureComponent {
       return validated;
     };
     const handleAttributeChange = (object, type, label) => {
-      if (type == "text") {
+      if (type === "text") {
         this.setState({
           selectedAttributes: {
             id: id,
@@ -71,6 +71,7 @@ export default class PDP extends PureComponent {
               list={attributeType.items}
               type={attributeType.type}
               label={attributeType.name}
+              key={attributeType.name}
               handler={handleAttributeChange}
             ></Attributes>
           ))}

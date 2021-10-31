@@ -13,6 +13,7 @@ export default class Currencies extends PureComponent {
           <div
             onClick={() => switchCurrency(currency)}
             style={{ cursor: "pointer" }}
+            key={currency}
           >
             <p style={currencyTextStyle}>{formatCurrency(currency)}</p>
           </div>

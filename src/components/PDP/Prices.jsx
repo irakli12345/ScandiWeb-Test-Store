@@ -1,13 +1,9 @@
 import React, { PureComponent } from "react";
 import { formatPrice, filteredPrice } from "../../helpers";
 export default class Prices extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
   render() {
     const { pricesInCurrencies, currency, label, mini } = this.props;
     const displayPrice = filteredPrice(pricesInCurrencies, currency);
-    console.log(displayPrice);
     return (
       <div>
         {label ? <p className="attributeLabel">Price:</p> : ""}

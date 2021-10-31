@@ -5,9 +5,6 @@ import Attributes from "../PDP/Attributes";
 import ProductQuantity from "./ProductQuantity";
 import ProductItemGallery from "./ProductItemGallery";
 export default class CartItem extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
   /* since the design included minicart, where attributes, prices and product labels were slightly different,
   I decided that these components should accept a prop "mini", which would indicate their relative size.
   */
@@ -33,7 +30,6 @@ export default class CartItem extends PureComponent {
             bolded={mini ? false : true}
           ></LeadingText>
           <Prices
-            currency={"usd"}
             pricesInCurrencies={prices}
             label={false}
             mini={mini}
@@ -52,6 +48,7 @@ export default class CartItem extends PureComponent {
                   ? preSelectedAttributes.swatch[attributeType.name]
                   : ""
               }
+              key={attributeType.name}
             ></Attributes>
           ))}
         </div>

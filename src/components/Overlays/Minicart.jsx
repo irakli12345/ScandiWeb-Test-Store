@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import CartItem from "../Cart/CartItem";
 import { Link } from "react-router-dom";
-import { formatPrice, findIndex } from "../../helpers";
+import { formatPrice } from "../../helpers";
 
 export default class Minicart extends PureComponent {
   render() {
@@ -21,7 +21,7 @@ export default class Minicart extends PureComponent {
           <p style={{ display: "inline" }}> {products.length + " products"}</p>
         </div>
         <div style={{ minHeight: "300px" }}>
-          {products.map((product) => (
+          {products.map((product, index) => (
             <CartItem
               product={product}
               mini={true}
@@ -30,6 +30,7 @@ export default class Minicart extends PureComponent {
                 updateQuantity(id, action, preSelectedAttributes)
               }
               selectedCurrency={selectedCurrency}
+              key={product.id.concat(index)}
             ></CartItem>
           ))}
         </div>
