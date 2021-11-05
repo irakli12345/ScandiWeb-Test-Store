@@ -152,19 +152,19 @@ export default class App extends PureComponent {
           total: this.calculateTotal(updatedArray, this.state.selectedCurrency),
         },
       });
-    } else {
-      const updatedArray = [
-        ...this.state.cart.products.slice(0, currentIndex),
-        product,
-        ...this.state.cart.products.slice(currentIndex + 1),
-      ];
-      this.setState({
-        cart: {
-          products: updatedArray,
-          total: this.calculateTotal(updatedArray, this.state.selectedCurrency),
-        },
-      });
+      return;
     }
+    const updatedArray = [
+      ...this.state.cart.products.slice(0, currentIndex),
+      product,
+      ...this.state.cart.products.slice(currentIndex + 1),
+    ];
+    this.setState({
+      cart: {
+        products: updatedArray,
+        total: this.calculateTotal(updatedArray, this.state.selectedCurrency),
+      },
+    });
   };
   changeMinicartStatus() {
     this.setState({
