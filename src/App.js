@@ -90,7 +90,10 @@ export default class App extends PureComponent {
       this.setState({
         cart: {
           products: updatedProductsArr,
-          total: this.calculateTotal(updatedProductsArr),
+          total: this.calculateTotal(
+            updatedProductsArr,
+            this.state.selectedCurrency
+          ),
         },
       });
     } else {
@@ -113,18 +116,17 @@ export default class App extends PureComponent {
       this.setState({
         cart: {
           products: updatedArray,
-          total: this.calculateTotal(updatedArray),
+          total: this.calculateTotal(updatedArray, this.state.selectedCurrency),
         },
       });
     }
   }
-  calculateTotal = (updatedArr) => {
+  calculateTotal = (updatedArr, currency) => {
     let total = 0;
     for (let i = 0; i < updatedArr.length; i++) {
       total +=
-        updatedArr[i].prices[
-          findIndex(this.state.selectedCurrency, updatedArr[i].prices)
-        ].amount * updatedArr[i].quantity;
+        updatedArr[i].prices[findIndex(currency, updatedArr[i].prices)].amount *
+        updatedArr[i].quantity;
     }
     return total;
   };
@@ -139,18 +141,30 @@ export default class App extends PureComponent {
       product.quantity += 1;
     } else if (action === "decrease" && product.quantity > 1) {
       product.quantity -= 1;
+    } else if (action === "decrease" && product.quantity === 1) {
+      const updatedArray = [
+        ...this.state.cart.products.slice(0, currentIndex),
+        ...this.state.cart.products.slice(currentIndex + 1),
+      ];
+      this.setState({
+        cart: {
+          products: updatedArray,
+          total: this.calculateTotal(updatedArray, this.state.selectedCurrency),
+        },
+      });
+    } else {
+      const updatedArray = [
+        ...this.state.cart.products.slice(0, currentIndex),
+        product,
+        ...this.state.cart.products.slice(currentIndex + 1),
+      ];
+      this.setState({
+        cart: {
+          products: updatedArray,
+          total: this.calculateTotal(updatedArray, this.state.selectedCurrency),
+        },
+      });
     }
-    const updatedArray = [
-      ...this.state.cart.products.slice(0, currentIndex),
-      product,
-      ...this.state.cart.products.slice(currentIndex + 1),
-    ];
-    this.setState({
-      cart: {
-        products: updatedArray,
-        total: this.calculateTotal(updatedArray),
-      },
-    });
   };
   changeMinicartStatus() {
     this.setState({
@@ -167,6 +181,10 @@ export default class App extends PureComponent {
   switchCurrency(currency) {
     this.setState({
       selectedCurrency: currency,
+      cart: {
+        products: this.state.cart.products,
+        total: this.calculateTotal(this.state.cart.products, currency),
+      },
     });
   }
   render() {

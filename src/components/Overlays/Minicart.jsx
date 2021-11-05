@@ -44,7 +44,7 @@ export default class Minicart extends PureComponent {
             Total
           </p>
           <p style={{ fontFamily: "Roboto", fontWeight: 700, fontSize: 16 }}>
-            {formatPrice(selectedCurrency, Math.round(total))}
+            {formatPrice(selectedCurrency, total.toFixed(2))}
           </p>
         </div>
         <div

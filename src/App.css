@@ -153,6 +153,7 @@
 }
 .description {
   width: 350px;
+  height: 100px;
 }
 .description > p {
   font-size: 16px;
