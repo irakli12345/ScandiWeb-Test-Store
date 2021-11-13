@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/irakli12345/ScandiWeb-Test-Store.git/static/css/main.f1e1aab5.chunk.css",
+    "main.js": "/irakli12345/ScandiWeb-Test-Store.git/static/js/main.7f798509.chunk.js",
+    "main.js.map": "/irakli12345/ScandiWeb-Test-Store.git/static/js/main.7f798509.chunk.js.map",
+    "runtime-main.js": "/irakli12345/ScandiWeb-Test-Store.git/static/js/runtime-main.7334a92c.js",
+    "runtime-main.js.map": "/irakli12345/ScandiWeb-Test-Store.git/static/js/runtime-main.7334a92c.js.map",
+    "static/js/2.96b6eac5.chunk.js": "/irakli12345/ScandiWeb-Test-Store.git/static/js/2.96b6eac5.chunk.js",
+    "static/js/2.96b6eac5.chunk.js.map": "/irakli12345/ScandiWeb-Test-Store.git/static/js/2.96b6eac5.chunk.js.map",
+    "static/js/3.6578ec65.chunk.js": "/irakli12345/ScandiWeb-Test-Store.git/static/js/3.6578ec65.chunk.js",
+    "static/js/3.6578ec65.chunk.js.map": "/irakli12345/ScandiWeb-Test-Store.git/static/js/3.6578ec65.chunk.js.map",
+    "index.html": "/irakli12345/ScandiWeb-Test-Store.git/index.html",
+    "static/css/main.f1e1aab5.chunk.css.map": "/irakli12345/ScandiWeb-Test-Store.git/static/css/main.f1e1aab5.chunk.css.map",
+    "static/js/2.96b6eac5.chunk.js.LICENSE.txt": "/irakli12345/ScandiWeb-Test-Store.git/static/js/2.96b6eac5.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7334a92c.js",
+    "static/js/2.96b6eac5.chunk.js",
+    "static/css/main.f1e1aab5.chunk.css",
+    "static/js/main.7f798509.chunk.js"
+  ]
+}
