@@ -19,7 +19,7 @@ export default class App extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      data: {},
+      data: Data,
       loaded: false,
       cart: {
         products: [],
@@ -66,9 +66,7 @@ export default class App extends PureComponent {
       currencies
     }
   `;
-  componentDidMount() {
-    this.setState({ data: Data, loaded: true });
-  }
+
   getFilteredProducts = function (categoryName) {
     return this.state.data.category.products.filter(
       (product) =>
@@ -187,43 +185,22 @@ export default class App extends PureComponent {
     });
   }
   render() {
-    console.log(this.state.data);
-    if (this.state.loaded) {
-      return (
-        <Router>
-          <div>
-            <Route path="/">
-              <div>
-                <Header
-                  categories={this.state.data.categories}
-                  cart={this.state.cart}
-                  changeMinicartStatus={this.changeMinicartStatus.bind(this)}
-                  expandCurrencies={this.expandCurrencies.bind(this)}
-                  currenciesExpanded={this.state.currenciesExpanded}
-                ></Header>
-              </div>
-              <Switch>
-                {this.state.data.categories.map((category) => (
-                  <Route path={"/" + category.name} exact key={category.name}>
-                    <div
-                      style={{
-                        backgroundColor: this.state.showMinicart
-                          ? "rgba(207, 207, 207, 0.3)"
-                          : "",
-                        minHeight: "80vh",
-                      }}
-                    >
-                      <Category
-                        products={this.getFilteredProducts(category.name)}
-                        name={category.name}
-                        key={category.name}
-                        selectedCurrency={this.state.selectedCurrency}
-                      ></Category>
-                    </div>
-                  </Route>
-                ))}
-
-                <Route path="/" exact>
+    return (
+      <Router>
+        <div>
+          <Route path="/">
+            <div>
+              <Header
+                categories={this.state.data.categories}
+                cart={this.state.cart}
+                changeMinicartStatus={this.changeMinicartStatus.bind(this)}
+                expandCurrencies={this.expandCurrencies.bind(this)}
+                currenciesExpanded={this.state.currenciesExpanded}
+              ></Header>
+            </div>
+            <Switch>
+              {this.state.data.categories.map((category) => (
+                <Route path={"/" + category.name} exact key={category.name}>
                   <div
                     style={{
                       backgroundColor: this.state.showMinicart
@@ -233,83 +210,99 @@ export default class App extends PureComponent {
                     }}
                   >
                     <Category
-                      products={this.state.data.category.products}
-                      name={this.state.data.category.name + " products"}
+                      products={this.getFilteredProducts(category.name)}
+                      name={category.name}
+                      key={category.name}
                       selectedCurrency={this.state.selectedCurrency}
                     ></Category>
                   </div>
                 </Route>
-              </Switch>
-            </Route>
+              ))}
 
-            {this.state.data.category.products.map((product) => (
-              <Switch key={product.id}>
-                <Route path={`/${product.category}/${product.id}`}>
-                  <div
-                    style={{
-                      backgroundColor: this.state.showMinicart
-                        ? "rgba(207, 207, 207, 0.3)"
-                        : "",
-                      minHeight: "80vh",
-                    }}
-                  >
-                    <PDP
-                      key={product.id}
-                      id={product.id}
-                      name={product.name}
-                      available={product.inStock}
-                      gallery={product.gallery}
-                      description={product.description}
-                      category={product.category}
-                      attributes={product.attributes}
-                      prices={product.prices}
-                      brand={product.brand}
-                      addToCart={this.addToCart.bind(this)}
-                      product={product}
-                      selectedCurrency={this.state.selectedCurrency}
-                    ></PDP>
-                  </div>
-                </Route>
-              </Switch>
-            ))}
-            <Route path="/cart" exact>
-              <div
-                style={{
-                  backgroundColor: this.state.showMinicart
-                    ? "rgba(207, 207, 207, 0.3)"
-                    : "",
-                  minHeight: "80vh",
-                }}
-              >
-                <FullCart
-                  products={this.state.cart.products}
-                  updateQuantity={this.updateQuantity}
-                  selectedCurrency={this.state.selectedCurrency}
-                ></FullCart>
-              </div>
-            </Route>
-            {this.state.showMinicart ? (
-              <Minicart
-                cart={this.state.cart}
+              <Route path="/" exact>
+                <div
+                  style={{
+                    backgroundColor: this.state.showMinicart
+                      ? "rgba(207, 207, 207, 0.3)"
+                      : "",
+                    minHeight: "80vh",
+                  }}
+                >
+                  <Category
+                    products={this.state.data.category.products}
+                    name={this.state.data.category.name + " products"}
+                    selectedCurrency={this.state.selectedCurrency}
+                  ></Category>
+                </div>
+              </Route>
+            </Switch>
+          </Route>
+
+          {this.state.data.category.products.map((product) => (
+            <Switch key={product.id}>
+              <Route path={`/${product.category}/${product.id}`}>
+                <div
+                  style={{
+                    backgroundColor: this.state.showMinicart
+                      ? "rgba(207, 207, 207, 0.3)"
+                      : "",
+                    minHeight: "80vh",
+                  }}
+                >
+                  <PDP
+                    key={product.id}
+                    id={product.id}
+                    name={product.name}
+                    available={product.inStock}
+                    gallery={product.gallery}
+                    description={product.description}
+                    category={product.category}
+                    attributes={product.attributes}
+                    prices={product.prices}
+                    brand={product.brand}
+                    addToCart={this.addToCart.bind(this)}
+                    product={product}
+                    selectedCurrency={this.state.selectedCurrency}
+                  ></PDP>
+                </div>
+              </Route>
+            </Switch>
+          ))}
+          <Route path="/cart" exact>
+            <div
+              style={{
+                backgroundColor: this.state.showMinicart
+                  ? "rgba(207, 207, 207, 0.3)"
+                  : "",
+                minHeight: "80vh",
+              }}
+            >
+              <FullCart
+                products={this.state.cart.products}
                 updateQuantity={this.updateQuantity}
                 selectedCurrency={this.state.selectedCurrency}
-              ></Minicart>
-            ) : (
-              ""
-            )}
-            {this.state.currenciesExpanded ? (
-              <Currencies
-                currencyList={this.state.data.currencies}
-                switchCurrency={this.switchCurrency.bind(this)}
-              ></Currencies>
-            ) : (
-              ""
-            )}
-          </div>
-        </Router>
-      );
-    } else {
-      return null;
-    }
+              ></FullCart>
+            </div>
+          </Route>
+          {this.state.showMinicart ? (
+            <Minicart
+              cart={this.state.cart}
+              updateQuantity={this.updateQuantity}
+              selectedCurrency={this.state.selectedCurrency}
+            ></Minicart>
+          ) : (
+            ""
+          )}
+          {this.state.currenciesExpanded ? (
+            <Currencies
+              currencyList={this.state.data.currencies}
+              switchCurrency={this.switchCurrency.bind(this)}
+            ></Currencies>
+          ) : (
+            ""
+          )}
+        </div>
+      </Router>
+    );
   }
 }
