@@ -14,6 +14,7 @@ import {
   findExistingProduct,
   findIndex,
 } from "./helpers";
+import Data from "./data.js";
 export default class App extends PureComponent {
   constructor(props) {
     super(props);
@@ -66,9 +67,7 @@ export default class App extends PureComponent {
     }
   `;
   componentDidMount() {
-    request("http://localhost:4000/", this.query).then((data) =>
-      this.setState({ data: data, loaded: true })
-    );
+    this.setState({ data: Data, loaded: true });
   }
   getFilteredProducts = function (categoryName) {
     return this.state.data.category.products.filter(
@@ -188,6 +187,7 @@ export default class App extends PureComponent {
     });
   }
   render() {
+    console.log(this.state.data);
     if (this.state.loaded) {
       return (
         <Router>
